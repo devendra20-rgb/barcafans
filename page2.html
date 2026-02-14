@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Step 2 - Verification</title>
+
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+  <style>
+    body { font-family: Arial; background:#f0f4f8; padding:40px; }
+    .box {
+      max-width:500px;
+      margin:auto;
+      background:#fff;
+      padding:30px;
+      border-radius:10px;
+      box-shadow:0 4px 15px rgba(0,0,0,.1);
+    }
+    label { display:block; margin:15px 0 5px; }
+    input, button {
+      width:100%;
+      padding:12px;
+      margin-top:5px;
+    }
+    button {
+      margin-top:25px;
+      background:#10b981;
+      color:#fff;
+      border:none;
+      border-radius:6px;
+      cursor:pointer;
+    }
+    .recaptcha-wrapper {
+      margin:20px 0;
+      text-align:center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h2>Step 2 – Verify & Submit</h2>
+
+  <form onsubmit="return validateCaptcha()">
+    <label>Phone Number</label>
+    <input type="tel" required pattern="[0-9]{10}">
+
+    <div class="recaptcha-wrapper">
+      <div class="g-recaptcha"
+           data-sitekey="6LeNFmcsAAAAAALop3WQjzp8O8epwvhfxfiypr7R">
+      </div>
+    </div>
+
+    <button type="submit">Final Submit</button>
+  </form>
+</div>
+
+<script>
+  function validateCaptcha() {
+    const response = grecaptcha.getResponse();
+    if (!response) {
+      alert("Please complete the CAPTCHA");
+      return false;
+    }
+    alert("Form submitted successfully (demo)");
+    return false; // remove this when backend is added
+  }
+</script>
+
+</body>
+</html>

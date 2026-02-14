@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Step 1 - Basic Details</title>
+  <style>
+    body { font-family: Arial; background:#f0f4f8; padding:40px; }
+    .box {
+      max-width:500px;
+      margin:auto;
+      background:#fff;
+      padding:30px;
+      border-radius:10px;
+      box-shadow:0 4px 15px rgba(0,0,0,.1);
+    }
+    label { display:block; margin:15px 0 5px; }
+    input, button {
+      width:100%;
+      padding:12px;
+      margin-top:5px;
+    }
+    button {
+      margin-top:25px;
+      background:#3b82f6;
+      color:#fff;
+      border:none;
+      border-radius:6px;
+      cursor:pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h2>Step 1 – User Information</h2>
+
+  <form action="page2.html" method="GET">
+    <label>Full Name</label>
+    <input type="text" name="name" required>
+
+    <label>Email</label>
+    <input type="email" name="email" required>
+
+    <button type="submit">Continue</button>
+  </form>
+</div>
+
+</body>
+</html>
