@@ -41,31 +41,38 @@
 <div class="box">
   <h2>Step 2 – Verify & Submit</h2>
 
-  <form onsubmit="return validateCaptcha()">
-    <label>Phone Number</label>
-    <input type="tel" required pattern="[0-9]{10}">
+  <form onsubmit="return handleSubmit()">
+  <label>Phone Number</label>
+  <input type="tel" id="phone" required pattern="[0-9]{10}">
 
-    <div class="recaptcha-wrapper">
-      <div class="g-recaptcha"
-           data-sitekey="6LeNFmcsAAAAAALop3WQjzp8O8epwvhfxfiypr7R">
-      </div>
+  <div class="recaptcha-wrapper">
+    <div class="g-recaptcha"
+         data-sitekey="6LeNFmcsAAAAAALop3WQjzp8O8epwvhfxfiypr7R">
     </div>
+  </div>
 
-    <button type="submit">Final Submit</button>
-  </form>
-</div>
+  <button type="submit">Final Submit</button>
+</form>
 
 <script>
-  function validateCaptcha() {
-    const response = grecaptcha.getResponse();
-    if (!response) {
+  function handleSubmit() {
+    const phone = document.getElementById("phone").value;
+    const captchaResponse = grecaptcha.getResponse();
+
+    // Phone validation (HTML pattern already checks, this is extra safety)
+    if (!/^\d{10}$/.test(phone)) {
+      alert("Please enter a valid 10-digit phone number");
+      return false;
+    }
+
+    // CAPTCHA validation
+    if (!captchaResponse) {
       alert("Please complete the CAPTCHA");
       return false;
     }
-    alert("Form submitted successfully (demo)");
-    return false; // remove this when backend is added
+
+    // ✅ All good → redirect
+    window.location.href = "https://www.wikipedia.org";
+    return false; // prevent normal form submit
   }
 </script>
-
-</body>
-</html>
